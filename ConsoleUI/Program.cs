@@ -9,8 +9,24 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-           // InMemoryGetAllTest();
-            EntityFrameworkGetAllTest();
+            // InMemoryGetAllTest();
+            //EntityFrameworkGetAllTest();
+            //CategoryManagerTest();
+            ProductManager productManager = new ProductManager(new EfProductDal());
+            foreach (var item in productManager.GetProductDetails())
+            {
+                Console.WriteLine(item.ProductName + " - " + item.CategoryName);
+            }
+
+        }
+
+        private static void CategoryManagerTest()
+        {
+            CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+            foreach (var item in categoryManager.GetAll())
+            {
+                Console.WriteLine(item.CategoryName);
+            }
         }
 
         private static void EntityFrameworkGetAllTest()
